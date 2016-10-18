@@ -38,9 +38,15 @@ class NotesController extends Controller
     	//$card->notes()->create($request->all());
 
     	//6
-    	$card->addNote(
-    		new Note($request->all())
-    		);
+        $this->validate($request, [
+            'body' => 'required|min:10'
+
+            ]);
+
+        $note = new Note($request->all());
+
+    	$card->addNote($note, 1);
+
     	//Create function in Card model
     	/*
 		pubic function addNote(Note $note)

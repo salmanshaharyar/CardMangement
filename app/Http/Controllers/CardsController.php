@@ -23,7 +23,10 @@ class CardsController extends Controller
 
     public function show(Card $card)
     {
-    	//return $card;
+        //Below line is an example of eager loading 
+    	//$card = Card::with('notes.user')->find(1);
+        $card->load('notes.user');
+        //return $card;
     	//$card = Card::find($id);
     	return view('cards.show', compact('card'));
     }
